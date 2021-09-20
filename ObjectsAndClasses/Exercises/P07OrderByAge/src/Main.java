@@ -1,0 +1,30 @@
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        List<Person> people = new ArrayList<>();
+
+        String input = scanner.nextLine();
+
+        while (!input.equals("End")) {
+            String[] commandData = input.split(" ");
+
+            Person newPerson = new Person(commandData[0], commandData[1], Integer.parseInt(commandData[2]));
+
+            people.add(newPerson);
+
+            input = scanner.nextLine();
+        }
+
+        people.sort(Comparator.comparing(Person::getAge));
+
+        for (Person person : people) {
+            System.out.println(person);
+        }
+    }
+}
